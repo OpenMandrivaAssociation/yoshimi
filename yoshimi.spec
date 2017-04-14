@@ -4,7 +4,7 @@ Name:           yoshimi
 Summary:        ZynAddSubFX with improved RT capacities
 
 Version:        1.2.1
-Release:        2
+Release:        3
 
 Source:         http://sourceforge.net/projects/yoshimi/files/1.2/%{name}-%{version}.tar.bz2
 URL:            http://yoshimi.sourceforge.net
