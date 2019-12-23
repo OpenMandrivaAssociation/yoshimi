@@ -24,7 +24,7 @@ synthesizer, but with improved realtime capacities. Yoshimi can use
 either ALSA or JACK for both Audio and MIDI, the default now being JACK
 
 %build
-pushd src
+cd src
 %cmake \
 	-DCMAKE_INSTALL_DATAROOTDIR=%{_datadir}
 %make_build
