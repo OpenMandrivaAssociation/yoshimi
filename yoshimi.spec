@@ -15,6 +15,7 @@ BuildRequires:  fftw-devel mxml-devel sndfile-devel fontconfig-devel glu-devel
 BuildRequires:  boost-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:	pkgconfig(cairo)
+BuildRequires:  fltk-devel
 
 %description
 Yoshimi is the legendary and powerful ZynAddSubFX multitimbral standalone
