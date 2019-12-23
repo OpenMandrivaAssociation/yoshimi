@@ -8,6 +8,7 @@ Release:        1
 
 Source:         http://sourceforge.net/projects/yoshimi/files/1.2/%{name}-%{version}.tar.bz2
 URL:            http://yoshimi.sourceforge.net
+Patch0:         yoshimi-cflags.patch
 License:        GPLv2
 Group:          Sound
 BuildRequires:  cmake libalsa-devel jackit-devel fltk-devel zlib-devel
@@ -22,39 +23,26 @@ Yoshimi is the legendary and powerful ZynAddSubFX multitimbral standalone
 synthesizer, but with improved realtime capacities. Yoshimi can use
 either ALSA or JACK for both Audio and MIDI, the default now being JACK
 
-%prep
-%setup -q
-
 %build
-cd src
-cmake . -DCMAKE_INSTALL_PREFIX=%{_prefix}
-%make
+pushd src
+%cmake \
+	-DCMAKE_INSTALL_DATAROOTDIR=%{_datadir}
+%make_build
+popd
 
 %install
-cd src
-%makeinstall_std
-
-rm -f %{buildroot}%{_datadir}/%{name}/banks/chip/.bankdir
-chmod -R 755 %{buildroot}%{_datadir}/%{name}/banks
-chmod -R 755 %{buildroot}%{_datadir}/%{name}/presets
-chmod a-X %{buildroot}%{_datadir}/%{name}/banks/*/*
-chmod a-X %{buildroot}%{_datadir}/%{name}/presets/*
-
-desktop-file-install \
-    --remove-key="Version" \
-    --add-category="X-MandrivaLinux-Sound" \
-    --dir %{buildroot}%{_datadir}/applications \
-%{buildroot}%{_datadir}/applications/%{name}.desktop
-
-%clean
+%make_install -C src/build
 
 %files
-
-%dir %{_datadir}/%{name}
+%doc %{_docdir}/%{name}/
 %{_bindir}/%{name}
-%{_datadir}/%{name}/*
-%{_datadir}/pixmaps/%{name}.png
+%{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/metainfo/%{name}.appdata.xml
+%{_datadir}/pixmaps/%{name}.png
+%{_iconsdir}/hicolor/*/apps/%{name}*.svg
+%{_libdir}/lv2/yoshimi.lv2/
+%{_mandir}/man1/%{name}.1.*
 
 
 
