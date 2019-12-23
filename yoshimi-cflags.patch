@@ -1,0 +1,52 @@
+diff -Nrup a/src/CMakeLists.txt b/src/CMakeLists.txt
+--- a/src/CMakeLists.txt	2019-12-16 15:09:28.000000000 +0100
++++ b/src/CMakeLists.txt	2019-12-22 00:47:58.279399339 +0100
+@@ -53,6 +53,7 @@ set (CMAKE_USE_RELATIVE_PATHS OFF)
+     # relative paths break some scripts(?)
+ set (CMAKE_SKIP_RULE_DEPENDENCY OFF)
+     # Rebuild objects if rules have changed, even if source hasn't.
++set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
+ 
+ message (STATUS "Building Yoshimi version ${YOSHIMI_VERSION} for ${CMAKE_SYSTEM_NAME}")
+ 
+@@ -99,33 +100,33 @@ option (ReportNotes "Report Notes On/Off
+ 
+ 
+ set (BuildOptions_X86
+-    "-msse -msse2 -mfpmath=sse -ffast-math -fomit-frame-pointer"
++    ${CMAKE_C_FLAGS}
+     CACHE STRING "basic X86 compiler options"
+ )
+ 
+ set (BuildOptions_X86_64AMD
+-    "-march=athlon64 -m64 -Wall -msse -msse2 -mfpmath=sse -ffast-math -fno-finite-math-only -fomit-frame-pointer"
++    ${CMAKE_C_FLAGS}
+     CACHE STRING "X86_64 compiler options"
+ )
+ 
+ set (BuildOptions_X86_64Core2
+-    "-march=core2 -m64 -Wall -msse -msse2 -mfpmath=sse -ffast-math -fno-finite-math-only -fomit-frame-pointer"
++    ${CMAKE_C_FLAGS}
+     CACHE STRING "X86_64 compiler options"
+ )
+ 
+ set (BuildOptions_RasPi4
+-    "-march=native -mfloat-abi=hard -mfpu=vfp -mcpu=cortex-a72 -mtune=cortex-a72 -pipe -mvectorize-with-neon-quad -funsafe-loop-optimizations"
++    ${CMAKE_C_FLAGS}
+     CACHE STRING "Raspberry Pi V4 compiler options"
+ )
+ 
+ set (BuildOptionsThisCPU
+-    "-march=native -mtune=native -Wall"
++    ${CMAKE_C_FLAGS}
+     CACHE STRING "Current CPU compiler options"
+ )
+ 
+ set (BuildOptionsBasic
+-    "-ffast-math -fomit-frame-pointer"
+-    CACHE STRING "basic compilier options"
++    ${CMAKE_C_FLAGS}
++    CACHE STRING "basic compiler options"
+ )
+ 
+ set (BuildOptionsDebug
