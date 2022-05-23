@@ -6,13 +6,22 @@ Summary:        ZynAddSubFX with improved RT capacities
 Version:        2.2.0
 Release:        1
 
-Source:         http://sourceforge.net/projects/yoshimi/files/1.2/%{name}-%{version}.tar.bz2
+Source:         http://sourceforge.net/projects/yoshimi/files/2.2/%{name}-%{version}.tar.bz2
 URL:            http://yoshimi.sourceforge.net
 License:        GPLv2
 Group:          Sound
-BuildRequires:  cmake libalsa-devel jackit-devel fltk-devel zlib-devel
-BuildRequires:  fftw-devel mxml-devel sndfile-devel fontconfig-devel glu-devel
+BuildRequires:  cmake 
+BuildRequires:  libalsa-devel 
+BuildRequires:  jackit-devel 
+BuildRequires:  zlib-devel
+BuildRequires:  fftw-devel 
+BuildRequires:  mxml-devel 
+BuildRequires:  sndfile-devel 
+BuildRequires:  fontconfig-devel 
+BuildRequires:  glu-devel
 BuildRequires:  boost-devel
+BuildRequires:	fltk-devel 
+BuildRequires:	fltk-fluid 
 BuildRequires:  desktop-file-utils
 BuildRequires:	pkgconfig(cairo)
 
@@ -26,7 +35,8 @@ either ALSA or JACK for both Audio and MIDI, the default now being JACK
 
 %build
 cd src
-cmake . -DCMAKE_INSTALL_PREFIX=%{_prefix}
+cmake . 	
+%cmake -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -fPIC" -DFLTK_INCLUDE_DIR=%{_includedir}/Fl -DCMAKE_INSTALL_PREFIX=%{_prefix}
 %make
 
 %install
