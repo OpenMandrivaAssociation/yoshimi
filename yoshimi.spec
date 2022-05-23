@@ -45,7 +45,7 @@ cd src
 
 %install
 cd src
-%make_install
+%make_install -C build
 
 rm -f %{buildroot}%{_datadir}/%{name}/banks/chip/.bankdir
 chmod -R 755 %{buildroot}%{_datadir}/%{name}/banks
