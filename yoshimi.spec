@@ -24,6 +24,7 @@ BuildRequires:	fltk-devel
 BuildRequires:	fltk-fluid 
 BuildRequires:  desktop-file-utils
 BuildRequires:	pkgconfig(cairo)
+BuildRequires:  pkgconfig(readline)
 
 %description
 Yoshimi is the legendary and powerful ZynAddSubFX multitimbral standalone
