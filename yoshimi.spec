@@ -11,14 +11,14 @@ URL:            http://yoshimi.sourceforge.net
 License:        GPLv2
 Group:          Sound
 BuildRequires:  cmake 
-BuildRequires:  libalsa-devel 
-BuildRequires:  jackit-devel 
+BuildRequires:  pkgconfig(alsa)
+BuildRequires:  pkgconfig(jack)
 BuildRequires:  zlib-devel
-BuildRequires:  fftw-devel 
-BuildRequires:  mxml-devel 
+BuildRequires:  pkgconfig(fftw3)
+BuildRequires:  pkgconfig(mxml)
 BuildRequires:  sndfile-devel 
-BuildRequires:  fontconfig-devel 
-BuildRequires:  glu-devel
+BuildRequires:  pkgconfig(fontconfig) 
+BuildRequires:  pkgconfig(glu)
 BuildRequires:  boost-devel
 BuildRequires:	fltk-devel 
 BuildRequires:	fltk-fluid 
@@ -37,13 +37,15 @@ either ALSA or JACK for both Audio and MIDI, the default now being JACK
 
 %build
 cd src
-cmake . 	
-%cmake -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -fPIC" -DFLTK_INCLUDE_DIR=%{_includedir}/Fl -DCMAKE_INSTALL_PREFIX=%{_prefix}
-%make
+%cmake  \
+        -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -fPIC" \
+        -DFLTK_INCLUDE_DIR=%{_includedir}/Fl \
+        -DCMAKE_INSTALL_PREFIX=%{_prefix}
+%make_build
 
 %install
 cd src
-%makeinstall_std
+%make_install
 
 rm -f %{buildroot}%{_datadir}/%{name}/banks/chip/.bankdir
 chmod -R 755 %{buildroot}%{_datadir}/%{name}/banks
