@@ -71,9 +71,4 @@ desktop-file-install \
 %{_datadir}/pixmaps/%{name}.png
 %{_iconsdir}/hicolor/scalable/apps/yoshimi.svg
 %{_iconsdir}/hicolor/scalable/apps/yoshimi_alt.svg
-%{_mandri}/man1/yoshimi.1.*
-
-
-
-
-
+%{_mandir}/man1/yoshimi.1.*
