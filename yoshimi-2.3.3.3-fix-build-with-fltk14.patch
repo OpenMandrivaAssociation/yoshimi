@@ -1,0 +1,23 @@
+diff -rupN yoshimi-2.3.3.3.old/src/UI/MiscGui.cpp yoshimi-2.3.3.3/src/UI/MiscGui.cpp
+--- yoshimi-2.3.3.3.old/src/UI/MiscGui.cpp	2025-02-26 12:41:36.000000000 +0100
++++ yoshimi-2.3.3.3/src/UI/MiscGui.cpp	2025-05-07 21:00:53.620131663 +0200
+@@ -27,6 +27,7 @@
+ #include "MasterUI.h"
+ 
+ #include <FL/Fl.H>
++#include <FL/platform.H>
+ #include <FL/fl_draw.H>
+ 
+ #include <cairo.h>
+diff -rupN yoshimi-2.3.3.3.old/src/UI/WidgetPDial.cpp yoshimi-2.3.3.3/src/UI/WidgetPDial.cpp
+--- yoshimi-2.3.3.3.old/src/UI/WidgetPDial.cpp	2025-02-26 12:41:36.000000000 +0100
++++ yoshimi-2.3.3.3/src/UI/WidgetPDial.cpp	2025-05-07 21:01:26.514630908 +0200
+@@ -32,7 +32,7 @@
+ #include <FL/fl_draw.H>
+ #include <FL/Fl_Tooltip.H>
+ #include <FL/Fl_Group.H>
+-#include <FL/x.H>
++#include <FL/platform.H>
+ #include <cairo.h>
+ #include <cairo-xlib.h>
+ 
