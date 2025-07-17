@@ -2,13 +2,12 @@
 
 Summary:	ZynAddSubFX with improved RT capacities
 Name:		yoshimi
-Version:	2.3.3.3
+Version:	2.3.4.1
 Release:	1
+License:	GPLv2+
+Group:	Sound
 Url:		https://yoshimi.sourceforge.io/
-License:	GPLv2
-Group:          Sound
 Source0:	https://github.com/Yoshimi/yoshimi/archive/%{name}-%{version}.tar.gz
-Patch0:		yoshimi-2.3.3.3-fix-build-with-fltk14.patch
 BuildRequires:	cmake 
 BuildRequires:	desktop-file-utils
 BuildRequires:	fltk-fluid
@@ -23,8 +22,10 @@ BuildRequires:	pkgconfig(jack)
 BuildRequires:	pkgconfig(lv2)
 # mxml4 not supported yet
 BuildRequires:	pkgconfig(mxml)
+BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(readline)
 BuildRequires:	pkgconfig(sndfile)
+BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(zlib)
 
 %description
@@ -57,6 +58,7 @@ cd src
 	-DCMAKE_CXX_FLAGS="%{optflags} -fPIC" \
 	-DFLTK_INCLUDE_DIR=%{_includedir}/FL \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix}
+
 %make_build
 
 
@@ -67,8 +69,9 @@ cd src
 # Drop hidden files
 rm -f %{buildroot}%{_datadir}/%{name}/banks/*/.bankdir
 
-# We pick the example files as doc: avoid a zillion of "files-duplicate" rpmllint warnings
+# We pick the example files as doc: avoid a zillion of "files-duplicate" rpmlint warnings
 rm -rf %{buildroot}%{_datadir}/%{name}/examples/*
+rmdir %{buildroot}%{_datadir}/%{name}/examples/
 rm -rf %{buildroot}%{_datadir}/doc/%{name}/Yoshimi_License_History.txt
 
 # Fix perms
@@ -76,6 +79,11 @@ chmod -R 755 %{buildroot}%{_datadir}/%{name}/banks
 chmod -R 755 %{buildroot}%{_datadir}/%{name}/presets
 chmod a-X %{buildroot}%{_datadir}/%{name}/banks/*/*
 chmod a-X %{buildroot}%{_datadir}/%{name}/presets/*
+chmod 755 %{buildroot}%{_docdir}/%{name}
+chmod 755 %{buildroot}%{_docdir}/%{name}/Histories
+chmod 755 %{buildroot}%{_docdir}/%{name}/examples
+chmod 755 %{buildroot}%{_docdir}/%{name}/examples/themes
+find %{buildroot}%{_docdir}/%{name}/%{name}_user_guide -type d| xargs chmod 755
 
 # Fix .desktop file
 desktop-file-edit \
