@@ -2,7 +2,7 @@
 
 Summary:	ZynAddSubFX with improved RT capacities
 Name:		yoshimi
-Version:	2.3.5.1
+Version:	2.3.6.2
 Release:	1
 License:	GPLv2+
 Group:	Sound
@@ -11,6 +11,7 @@ Source0:	https://github.com/Yoshimi/yoshimi/archive/%{name}-%{version}.tar.gz
 BuildRequires:	cmake 
 BuildRequires:	desktop-file-utils
 BuildRequires:	fltk-fluid
+BuildRequires:	make
 BuildRequires:	boost-devel
 BuildRequires:	fltk-devel 
 BuildRequires:	pkgconfig(alsa)
@@ -20,7 +21,6 @@ BuildRequires:	pkgconfig(fontconfig)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(jack)
 BuildRequires:	pkgconfig(lv2)
-# mxml4 not supported yet
 BuildRequires:	pkgconfig(mxml)
 BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(readline)
