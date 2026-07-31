@@ -2,7 +2,7 @@
 
 Summary:	ZynAddSubFX with improved RT capacities
 Name:		yoshimi
-Version:	2.3.6.2
+Version:	2.3.6.4
 Release:	1
 License:	GPLv2+
 Group:	Sound
